@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Travel_MK</string>
+    <string name="main_label">Find the best tour</string>
+    <string name="country">Country</string>
+    <string name="popular">Popular tours</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wifi">Free \n Wifi</string>
+    <string name="beach">Sand \n Beach</string>
+    <string name="bar">Bar and \n Restaurant</string>
+    <string name="coastline">First \n Coastline</string>
+    <string name="em_no_news">No Country are not available for now</string>
+
+</resources>
