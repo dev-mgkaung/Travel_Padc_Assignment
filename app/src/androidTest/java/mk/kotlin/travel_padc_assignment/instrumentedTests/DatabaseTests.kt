@@ -51,6 +51,7 @@ class DatabaseTest {
           mDao.insertAllData(Arrays.asList(countryone,countrytwo))
 
           assert(mDao.getTourById(countryone.name).value?.name == countryone.name)
+
     }
 
 
