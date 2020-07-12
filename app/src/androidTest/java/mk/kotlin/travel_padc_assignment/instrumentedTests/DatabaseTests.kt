@@ -36,21 +36,22 @@ class DatabaseTest {
 
     @Test
     fun insertIntoDatabaseTest() {
+
         val countryone = CountryVO()
-        countryone.name="Myanmar"
-        countryone.average_rating=4.0
-        countryone.description="Hi desc"
-        countryone.location="Yangon"
+        countryone.name = "Myanmar"
+        countryone.average_rating = 4.0
+        countryone.description = "Hi desc"
+        countryone.location = "Yangon"
 
         val countrytwo = CountryVO()
-        countrytwo.name="United state"
-        countrytwo.average_rating=5.0
-        countrytwo.description="Hi desc"
-        countrytwo.location="American"
+        countrytwo.name = "United state"
+        countrytwo.average_rating = 5.0
+        countrytwo.description = "Hi desc"
+        countrytwo.location = "American"
 
-          mDao.insertAllData(Arrays.asList(countryone,countrytwo))
+        mDao.insertAllData(Arrays.asList(countryone, countrytwo))
 
-          assert(mDao.getTourById(countryone.name).value?.name == countryone.name)
+        assert(mDao.getTourById(countryone.name).value?.name == countryone.name)
 
     }
 

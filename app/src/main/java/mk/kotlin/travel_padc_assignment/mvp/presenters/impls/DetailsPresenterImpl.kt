@@ -9,7 +9,7 @@ import mk.kotlin.travel_padc_assignment.mvp.views.DetailsView
 import mk.padc.mgkaung_assignment.utils.VALUE_TWO
 
 class DetailsPresenterImpl : DetailsPresenter, AbstractBasePresenter<DetailsView>() {
-    private val mTourModel: TourModelImpl = TourModelImpl
+     var mTourModel: TourModelImpl = TourModelImpl
     override fun onSwipeRefresh(lifecycleOwner: LifecycleOwner) {
 
     }
