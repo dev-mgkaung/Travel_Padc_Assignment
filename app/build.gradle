@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "mk.kotlin.travel_padc_assignment"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -81,4 +81,6 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-android:3.1.0"
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
 
+    def fragment_version = "1.2.5"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
 }

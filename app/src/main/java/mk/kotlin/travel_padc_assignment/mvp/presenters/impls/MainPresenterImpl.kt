@@ -9,7 +9,7 @@ import mk.kotlin.travel_padc_assignment.mvp.views.MainView
 
 class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
 
-    private val mTourModel = TourModelImpl
+    var mTourModel = TourModelImpl
 
 
     override fun onSwipeRefresh() {

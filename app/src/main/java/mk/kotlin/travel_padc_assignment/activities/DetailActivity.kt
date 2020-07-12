@@ -1,11 +1,8 @@
-package mk.kotlin.travel_padc_assignment.fragments
+package mk.kotlin.travel_padc_assignment.activities
 
-import androidx.lifecycle.Observer
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.padcmyanmar.padcx.padc_x_recyclerview_ypst.mvp.presenters.DetailsPresenterImpl
@@ -23,38 +20,25 @@ import mk.kotlin.travel_padc_assignment.mvp.views.DetailsView
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+class DetailActivity: BaseActivity(), DetailsView {
 
-class DetailFragment : Fragment(), DetailsView {
-
-    private var name: String = ""
-    private var mValue: Int = 0
     private lateinit var mDetailPresenter: DetailsPresenter
     private lateinit var mScoreandReviewAdapter: ScoreandReviewAdapter
     private lateinit var mPhotoAdapter: PhotoAdapter
+
     val mTourModel: TourModel = TourModelImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            name = it.getString(ARG_PARAM1).toString()
-            mValue = it.getInt(ARG_PARAM2)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+        setContentView(R.layout.fragment_detail)
         initPresneter()
         setUpRecycler()
         settingData()
-        mDetailPresenter.onDetailUiReadyState(name,mValue,this)
+
+        mDetailPresenter.onDetailUiReadyState(
+             intent.getStringExtra(ARG_PARAM1).toString(),
+             intent.getIntExtra(ARG_PARAM2, 0),this)
+
     }
 
     private fun initPresneter(){
@@ -66,8 +50,8 @@ class DetailFragment : Fragment(), DetailsView {
         mScoreandReviewAdapter = ScoreandReviewAdapter()
         mPhotoAdapter = PhotoAdapter()
 
-        val layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
-        val layoutManagerTwo = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        val layoutManagerTwo = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         scorce_recyclerview.layoutManager = layoutManager
         photo_list_recyclerview.layoutManager = layoutManagerTwo
         scorce_recyclerview.adapter = mScoreandReviewAdapter
@@ -77,30 +61,30 @@ class DetailFragment : Fragment(), DetailsView {
 
     private fun settingData(){
         arrow_image.setOnClickListener {
-            activity?.supportFragmentManager?.popBackStack()
+           super.onBackPressed()
         }
     }
 
 
     companion object {
         @JvmStatic
-        fun newInstance(name: String, value: Int) =
-            DetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, name)
-                    putInt(ARG_PARAM2, value)
-                }
-            }
+        fun newIntent(context: Context,name: String, value: Int): Intent {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(ARG_PARAM1,name)
+            intent.putExtra(ARG_PARAM2,value)
+            return intent
+        }
     }
 
+
     override fun displayDetails(countryVO: CountryVO) {
-        activity?.let {
+        this?.let {
             Glide.with(it)
                 .load(countryVO.photos[1])
                 .centerCrop()
                 .into(bgimage)
         }
-        title.text = countryVO.name
+        stitle.text = countryVO.name
         tvLocation.text = countryVO.location
         tvRating.text = countryVO.average_rating.toString()
         ratingBar.rating = countryVO.average_rating.toFloat()
@@ -108,4 +92,5 @@ class DetailFragment : Fragment(), DetailsView {
         mPhotoAdapter.setNewData(countryVO.photos)
         detail.text = countryVO.description
     }
+
 }

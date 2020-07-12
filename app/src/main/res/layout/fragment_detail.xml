@@ -33,7 +33,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 />
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/stitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -42,7 +42,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textSize="24sp"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="@dimen/margin_medium_2" />
             <TextView
                 android:id="@+id/tvLocation"
                 android:layout_width="match_parent"
@@ -51,13 +52,16 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:text="Koh chan Thailand"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:layout_alignStart="@id/title"
-                android:layout_below="@id/title"
+                android:layout_alignStart="@id/stitle"
+                android:layout_below="@id/stitle"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:drawableStart="@drawable/ic_place_black_24dp"
                 android:drawablePadding="@dimen/margin_medium"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_alignLeft="@id/stitle"
+                android:drawableLeft="@drawable/ic_place_black_24dp" />
 
             <androidx.appcompat.widget.AppCompatRatingBar
                 android:id="@+id/ratingBar"
@@ -69,7 +73,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:progressBackgroundTint="@android:color/white"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_alignStart="@id/tvLocation"
-                android:layout_marginTop="@dimen/margin_medium"/>
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_alignLeft="@id/tvLocation" />
 
             <TextView
                 android:id="@+id/tvRating"
@@ -82,7 +87,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:text="2.1" />
+                android:text="2.1"
+                android:layout_marginLeft="@dimen/margin_medium" />
 
 
         </RelativeLayout>
@@ -244,7 +250,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/detail"
             android:textStyle="normal"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/text_regular"/>
+            android:textSize="@dimen/text_regular"
+            android:gravity="center_horizontal" />
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="150dp"

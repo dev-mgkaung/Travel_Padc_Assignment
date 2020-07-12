@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.padcmyanmar.padcx.padc_x_recyclerview_ypst.mvp.presenters.MainPresenterImpl
 import kotlinx.android.synthetic.main.fragment_home.*
 import mk.kotlin.travel_padc_assignment.R
+import mk.kotlin.travel_padc_assignment.activities.DetailActivity
 import mk.kotlin.travel_padc_assignment.adapters.CountryListAdapter
 import mk.kotlin.travel_padc_assignment.adapters.MainAdapter
 import mk.kotlin.travel_padc_assignment.datas.model.TourModel
@@ -102,9 +104,9 @@ class HomeFragment : Fragment(), ToursItemDelegate, MainView {
     }
 
     override fun navigateToTourDetail(name: String, value: Int) {
-        activity?.supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.ftcontainer, DetailFragment.newInstance(name,value))?.addToBackStack(null)
-            ?.commit()
+
+        context?.let { ActivityCompat.startActivity(it,DetailActivity.newIntent(it,name,value),null) }
+
     }
 
     override fun onTapTourItem(name: String, id: Int) {}

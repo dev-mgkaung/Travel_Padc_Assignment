@@ -28,7 +28,6 @@ class MainActivity : BaseActivity() {
                     R.id.action_search -> navChange(SearchFragment())
                     R.id.action_favourite -> navChange(FavouriteFragment())
                     R.id.action_price -> navChange(PriceFragment())
-                    R.id.action_detail -> navChange(DetailFragment())
                 }
                 return true
             }
